@@ -1,13 +1,13 @@
 CXX=g++
 OPTS=-Wall -g
-OBJS=main.o
+OBJS=rersb.o
 LIBS=-lmrss
 
 rersb: ${OBJS}
 	${CXX} ${OPTS} ${LIBS} -o $@ ${OBJS}
 
-main.o: main.cc
-	${CXX} ${OPTS} -c main.cc
+rersb.o: rersb.cc
+	${CXX} ${OPTS} -c rersb.cc
 
 clean:
 	rm *.o
