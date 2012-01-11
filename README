@@ -1,4 +1,8 @@
-renrsb - reddit ncurses rss browser
+rersb - reddit ncurses rss browser
 -----------------------------------
 An application intended to allow a user to browse reddit over ssh with a simple
 ncurses interface.
+
+Requires:
+ncurses
+libmrss
