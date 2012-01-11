@@ -50,7 +50,7 @@ void RersbDisplay::writeItems(int startItem)
    mrss_item_t * item = _rssData->item;
    
    while(item != NULL && ypos < _y) {
-      mvwprintw(_win, ypos, 1, item->title);
+      mvwprintw(_win, ypos, 1, "%.*s", _x - 2, item->title);
       ypos++;
       item = item->next;
    }
@@ -92,7 +92,7 @@ void RersbDisplay::moveUp()
 
 void RersbDisplay::moveDown()
 {
-   if(_index >= _itemCount)
+   if(_index == _itemCount - 1)
       return;
 
    dehighlightItem(_index++);
