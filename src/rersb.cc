@@ -82,6 +82,10 @@ int eventLoop(string url)
 	 case KEY_DOWN:
 	    rersbDisplay->moveDown();
 	    break;
+         case 'r':
+            rersbDisplay->refreshRssData();
+            rersbDisplay->writeItems();
+            break;
       }
    }
 
