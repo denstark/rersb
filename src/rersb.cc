@@ -28,9 +28,9 @@ using std::string;
 static char short_opts[] = "hv";
 static struct option long_options[] = 
 {
-	 {"help", no_argument, 0, 'h'},
-	 {"version", no_argument, 0, 'v'},
-	 {0,0,0,0}
+   {"help", no_argument, 0, 'h'},
+   {"version", no_argument, 0, 'v'},
+   {0,0,0,0}
 };
 
 const string VERSION = "0.1";
@@ -38,55 +38,55 @@ const string AUTHORS = "Thomas Hartman, Tim Stella";
 
 void printHelp()
 {
-	 cout << "rersb: reddit ncurses rss browser" << endl;
-	 cout << "Usage: rersb -[v,h] --[version,help] [url]" << endl;
-	 cout << "\t-h, --help" << endl;
-	 cout << "\t\tPrint this help message." << endl;
-	 cout << "\t-v, --version" << endl;
-	 cout << "\t\tPrint version information." << endl;
+   cout << "rersb: reddit ncurses rss browser" << endl;
+   cout << "Usage: rersb -[v,h] --[version,help] [url]" << endl;
+   cout << "\t-h, --help" << endl;
+   cout << "\t\tPrint this help message." << endl;
+   cout << "\t-v, --version" << endl;
+   cout << "\t\tPrint version information." << endl;
 }
 
 void printVersion()
 {
-	 cout << "rersb v. " << VERSION << endl;
-	 cout << "Copyright (c) 2012 " << AUTHORS << endl;
+   cout << "rersb v. " << VERSION << endl;
+   cout << "Copyright (c) 2012 " << AUTHORS << endl;
 }
 
 int main(int argc, char ** argv)
 {
-	 int opt = 0, option_index = 0;
-	 string url;
-	 
-	 /* Parse cli arguments */
-	 while((opt = getopt_long(argc, argv, short_opts, long_options, 
-														&option_index)) != -1) {
-			switch(opt) {
-				 case 'h':
-						printHelp();
-						return 0;
-						
-				 case 'v':
-						printVersion();
-						return 0;
-						
-				 default:
-						cout << "Unknown option '" << char(opt) << "'." << endl;
-						cout << endl;
-						printHelp();
-						return -1;
-			}			
-	 }
-		
-	 if(optind == (argc - 1))
-			url = argv[optind];
-	 else if(optind > (argc - 1)) {
-			cout << "Too many arguments." << endl << endl;
-			printHelp();
-			return -1;
-	 }		 	 
-
-	 if(url != "")
-			cout << "Rersb called with url string " << url << endl;
-
-	 return 0;
+   int opt = 0, option_index = 0;
+   string url;
+   
+   /* Parse cli arguments */
+   while((opt = getopt_long(argc, argv, short_opts, long_options, 
+			    &option_index)) != -1) {
+      switch(opt) {
+	 case 'h':
+	    printHelp();
+	    return 0;
+	    
+	 case 'v':
+	    printVersion();
+	    return 0;
+	    
+	 default:
+	    cout << "Unknown option '" << char(opt) << "'." << endl;
+	    cout << endl;
+	    printHelp();
+	    return -1;
+      }			
+   }
+   
+   if(optind == (argc - 1))
+      url = argv[optind];
+   else if(optind > (argc - 1)) {
+      cout << "Too many arguments." << endl << endl;
+      printHelp();
+      return -1;
+   }		 	 
+   
+   if(url != "")
+      cout << "Rersb called with url string " << url << endl;
+   
+   return 0;
 }
