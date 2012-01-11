@@ -56,7 +56,8 @@ void printVersion()
 int eventLoop(string url)
 {
    initscr();
-
+   // Sets the cursor to invisible
+   curs_set(0);
    start_color();
    init_pair(1, COLOR_WHITE, COLOR_BLACK);
    init_pair(2, COLOR_BLACK, COLOR_WHITE);

@@ -26,7 +26,6 @@ RersbDisplay::RersbDisplay(int y, int x, string url)
    _x = x;
    _url = url;
    _win = newwin(y, x, 0, 0);
-   curs_set(0);
    box(_win, 0, 0);
    wrefresh(_win);
    _rssData = NULL;
