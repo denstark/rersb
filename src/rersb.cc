@@ -14,12 +14,13 @@
 /* GNU General Public License for more details.                              */
 /*****************************************************************************/
 extern "C" {
-#include <mrss.h>
+#include <ncurses.h>
 }
 
 #include <getopt.h>
 #include <iostream>
 #include <string>
+#include "rersbDisplay.h"
 
 using std::cout;
 using std::endl;
@@ -50,6 +51,43 @@ void printVersion()
 {
    cout << "rersb v. " << VERSION << endl;
    cout << "Copyright (c) 2012 " << AUTHORS << endl;
+}
+
+int eventLoop(string url)
+{
+   initscr();
+
+   start_color();
+   init_pair(1, COLOR_WHITE, COLOR_BLACK);
+   init_pair(2, COLOR_BLACK, COLOR_WHITE);
+
+   cbreak();
+   keypad(stdscr, TRUE);
+   
+   refresh();
+
+   int x, y;
+   getmaxyx(stdscr, y, x);
+   RersbDisplay * rersbDisplay = new RersbDisplay(y, x, url);
+
+   rersbDisplay->writeItems();
+   int ch;
+
+   while((ch = getch()) != 'q') {
+      switch(ch) {
+	 case KEY_UP:
+	    rersbDisplay->moveUp();
+	    break;
+	 case KEY_DOWN:
+	    rersbDisplay->moveDown();
+	    break;
+      }
+   }
+
+   delete rersbDisplay;
+   endwin();
+
+   return 0;
 }
 
 int main(int argc, char ** argv)
@@ -83,10 +121,7 @@ int main(int argc, char ** argv)
       cout << "Too many arguments." << endl << endl;
       printHelp();
       return -1;
-   }		 	 
+   }	 	 
    
-   if(url != "")
-      cout << "Rersb called with url string " << url << endl;
-   
-   return 0;
+   return eventLoop(url);  
 }
