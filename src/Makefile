@@ -1,6 +1,6 @@
 CXX=g++
 OPTS=-Wall -g
-OBJS=rersb.o rersbDisplay.o
+OBJS=rersb.o rersbDisplay.o rersbErrDlg.o
 LIBS=-lmrss -lncurses
 
 rersb: ${OBJS}
@@ -11,6 +11,9 @@ rersb.o: rersb.cc
 
 rersbDisplay.o: rersbDisplay.h rersbDisplay.cc
 	${CXX} ${OPTS} -c rersbDisplay.cc
+
+rersbErrDlg.o: rersbErrDlg.h rersbErrDlg.cc
+	${CXX} ${OPTS} -c rersbErrDlg.cc
 
 clean:
 	rm *.o
