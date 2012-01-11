@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/* rersbDisplay.h for rersb                                                  */
+/* rersbException.h for rersb                                                */
 /* Copyright (c) 2012 Thomas Hartman (rokstar83@gmail.com)                   */
 /*                                                                           */
 /* This program is free software; you can redistribute it and/or             */
@@ -13,44 +13,21 @@
 /* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             */
 /* GNU General Public License for more details.                              */
 /*****************************************************************************/
-#ifndef RERSBDISPLAY_HH_
-#define RERSBDISPLAY_HH_
+#ifndef RERSBEXCEPTION_HH_
+#define RERSBEXCEPTION_HH_
 
 #include <string>
-extern "C" {
-#include <ncurses.h>
-}
 
 using std::string;
-struct mrss_t;
 
-class RersbDisplay
-{  
+class RersbException
+{
   public:
-   RersbDisplay(int y, int x, string url);
-   ~RersbDisplay();
-
-   void setUrl(string url);
-
-   void printItems(int startItem = 0);
-   void clearItems();
-
-   void highlightItem(int index);
-   void dehighlightItem(int index);
-
-   void moveUp();
-   void moveDown();
-
-   void refreshRssData();
+   RersbException(string msg) {_msg = msg;}
+   string getMsg() {return _msg;}
 
   private:
-   WINDOW * _win;
-   mrss_t * _rssData;
-   string _url;
-   int _y;
-   int _x;
-   int _itemCount;
-   int _index;
+   string _msg;
 };
 
-#endif//RERSBDISPLAY_HH_
+#endif//RERSBEXCEPTION_HH_
